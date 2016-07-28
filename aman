@@ -1,0 +1,29 @@
+export AMAN_HOME="~/.aman"
+export AMAN_FUNC="$AMAN_HOME/func.d"
+export AMAN_ALIAS="$AMAN_HOME/alias.d"
+export AMAN="$AMAN_HOME/aman"
+export GIT="https://github.com/tchordia/BashAliasManager.git"
+
+INSTALL=$1
+if [ "$INSTALL" == "install" ]
+then
+    BASH_RC="~/.bashrc"
+    git clone $GIT $AMAN_HOME
+    grep -q "$AMAN" $BASH_RC || echo ". $AMAN" >> $BASH_RC
+    echo -e "\n[+] 'aman' is now installed!"
+    echo -e "[-] Now please, load 'baids' executing:\n"
+    echo "    source $AMAN"
+    exit 0
+fi 
+
+source $AMAN_ALIAS
+source $AMAN_FUNC
+
+function aman {
+   echo "alias $1=\"$2\"" >> $AMAN_ALIAS && source $AMAN_ALIAS
+}
+
+function amanf {
+   echo "function $1 { $2 }" >> $AMAN_FUNC && source $AMAN_FUNC
+} 
+
