@@ -1,4 +1,4 @@
-export AMAN_HOME="~/.aman"
+export AMAN_HOME="$HOME/.aman"
 export AMAN_FUNC="$AMAN_HOME/func.d"
 export AMAN_ALIAS="$AMAN_HOME/alias.d"
 export AMAN="$AMAN_HOME/aman"
@@ -7,7 +7,7 @@ export GIT="https://github.com/tchordia/BashAliasManager.git"
 INSTALL=$1
 if [ "$INSTALL" == "install" ]
 then
-    BASH_RC="~/.bashrc"
+    BASH_RC="$HOME/.bashrc"
     git clone $GIT $AMAN_HOME
     grep -q "$AMAN" $BASH_RC || echo ". $AMAN" >> $BASH_RC
     echo -e "\n[+] 'aman' is now installed!"
